@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legislação - SEMMA - Vigia/PA</title>
+    <style>
+        /*
+        ==================================================
+        CSS BASE (MANTENDO COERÊNCIA VISUAL)
+        ==================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            /* Paleta de Cores Ambientais e Governamentais */
+            --color-primary: #007A33; /* Verde Floresta Escuro (Principal) */
+            --color-secondary: #00A65A; /* Verde Cítrico (Destaque) */
+            --color-accent: #FFCC00; /* Amarelo Alerta/Sol */
+            --color-background: #F8F8F8; /* Fundo Claro */
+            --color-text-dark: #1A1A1A;
+            --color-text-light: #FFFFFF;
+            --color-border: #E0E0E0;
+            --color-card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-secondary);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+
+        /* Estilos do Cabeçalho (Reutilizados do index.html) */
+        .main-header {
+            background-color: var(--color-text-light);
+            border-bottom: 3px solid var(--color-primary);
+            padding: 10px 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-area img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5em;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 8px;
+            order: 3;
+        }
+
+        .social-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .social-nav a:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .social-icon {
+            font-weight: 700;
+        }
+
+        .primary-nav {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .primary-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .primary-nav a {
+            color: var(--color-text-dark);
+            font-weight: 400;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .primary-nav a:hover, .primary-nav .active a { /* Destaque para página ativa */
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .search-box input {
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        /* Estilos do Rodapé (Reutilizados do index.html) */
+        .main-footer {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 40px 0 10px;
+        }
+
+        .main-footer h3, .main-footer h4 {
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .main-footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-contact, .footer-links, .footer-social {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a, .footer-social a {
+            color: var(--color-text-light);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .footer-links a:hover, .footer-social a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8em;
+        }
+
+        /*
+        ==================================================
+        2. ESTILOS ESPECÍFICOS: PÁGINA DE LEGISLAÇÃO
+        ==================================================
+        */
+        .hero-title {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-title h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .legislation-section {
+            display: flex;
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+
+        /* Coluna de Filtros/Navegação Lateral */
+        .sidebar-filter {
+            flex: 0 0 280px; /* Largura fixa para a barra lateral */
+            background-color: var(--color-card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            height: fit-content; /* Ajusta a altura ao conteúdo */
+        }
+
+        .sidebar-filter h3 {
+            color: var(--color-primary);
+            font-size: 1.4em;
+            margin-top: 0;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            margin-bottom: 25px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--color-text-dark);
+        }
+
+        .filter-group select, .filter-group input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: var(--font-primary);
+        }
+
+        .filter-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .filter-group button:hover {
+            background-color: var(--color-primary);
+        }
+
+        /* Coluna de Resultados */
+        .legislation-results {
+            flex-grow: 1;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 10px;
+        }
+
+        .results-header h3 {
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        /* Estilo dos Documentos/Itens de Legislação */
+        .legislation-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--color-card-bg);
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: background-color 0.3s;
+        }
+
+        .legislation-item:hover {
+            background-color: #F0FFF4; /* Fundo mais claro ao passar o mouse */
+        }
+
+        .doc-icon {
+            font-size: 1.5em; /* Simula ícone (ex: um documento) */
+            color: var(--color-secondary);
+            margin-right: 15px;
+        }
+
+        .doc-info {
+            flex-grow: 1;
+        }
+
+        .doc-info h4 {
+            font-size: 1.1em;
+            margin: 0 0 5px 0;
+            color: var(--color-text-dark);
+        }
+
+        .doc-meta {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .doc-link {
+            padding: 8px 15px;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .doc-link:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+        }
+
+        /* Media Queries para Responsividade */
+        @media (max-width: 992px) {
+            .legislation-section {
+                flex-direction: column;
+            }
+            .sidebar-filter {
+                flex: 1 1 100%;
+                margin-bottom: 30px;
+            }
+            .legislation-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .doc-info {
+                margin-bottom: 10px;
+            }
+            .doc-link {
+                align-self: flex-end;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title h2 { font-size: 2em; }
+            .primary-nav { flex-direction: column; align-items: flex-start; }
+            .primary-nav ul { width: 100%; justify-content: space-around; margin-bottom: 15px; }
+            .legislation-results h3 { font-size: 1.5em; }
+        }
+    </style>
+</head>
+<body>
+<!--BOTÕES DE EMERGGENCIA-->
+<div id="fixed-corner-buttons">
+    <a href="https://wa.me/559184129007" class="btn-corner-base btn-viatura">
+        <i data-feather="phone-call"></i> VIATURA DA POLÍCIA</a>
+    <a href="https://deamvirtual.pc.pa.gov.br/violencia_contra_mulher/" class="btn-corner-base btn-denuncia-corner">
+        <i data-feather="message-circle"></i> BOMBEIRO</a>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-area">
+                <img src="https://i.imgur.com/OFREfKI.jpeg" alt="Logotipo da Secretaria de Meio Ambiente">
+                <h1>SEMMA - Vigia/PA</h1>
+            </div>
+
+            <nav class="primary-nav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="service.html">Serviços</a></li>
+                    <li class="active"><a href="legislacao.html">Legislação</a></li>
+                    <li><a href="educacao-ambiental.html">Educação Ambiental</a></li>
+                    <li><a href="transparencia.html">Transparência</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <a href="denuncia.html" class="btn-denuncia-main btn-pulsar" style="
+            background-color: red;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block; /* Necessário para aplicar transform */
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Adiciona um brilho sutil */
+        ">Denuncie Agora !</a>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+
+
+    <section class="hero-title">
+        <div class="container">
+            <h2>Base de Legislação Ambiental</h2>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container legislation-section">
+            <section class="legislation-results">
+                <div class="results-header">
+                    <h3>Resultados Encontrados (15)</h3>
+                </div>
+
+                <article class="legislation-item">
+                    <span class="doc-icon">📄</span>
+                    <div class="doc-info">
+                        <h4>Lei Municipal Nº 1.234/2025 - Política Municipal de Resíduos Sólidos</h4>
+                        <p class="doc-meta">Tipo: Lei | Ano: 2025 | Assunto: Resíduos, Coleta Seletiva</p>
+                    </div>
+                    <a href="docs/lei1234.pdf" target="_blank" class="doc-link">Baixar PDF</a>
+                </article>
+
+                <article class="legislation-item">
+                    <span class="doc-icon">📝</span>
+                    <div class="doc-info">
+                        <h4>Decreto Nº 500/2024 - Regulamenta o Licenciamento Simplificado</h4>
+                        <p class="doc-meta">Tipo: Decreto | Ano: 2024 | Assunto: Licenciamento, Normas</p>
+                    </div>
+                    <a href="docs/decreto500.pdf" target="_blank" class="doc-link">Baixar PDF</a>
+                </article>
+
+                <article class="legislation-item">
+                    <span class="doc-icon">📜</span>
+                    <div class="doc-info">
+                        <h4>Resolução SEMMA Nº 03/2023 - Prazos e Taxas de Outorga</h4>
+                        <p class="doc-meta">Tipo: Resolução | Ano: 2023 | Assunto: Outorga, Taxas</p>
+                    </div>
+                    <a href="docs/resolucao03.pdf" target="_blank" class="doc-link">Baixar PDF</a>
+                </article>
+
+                </section>
+            </div>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-contact">
+                <h3>Secretaria de Meio Ambiente</h3>
+                <p>Endereço: [Rua, Número, Bairro]</p>
+                <p>Telefone: (XX) XXXX-XXXX | E-mail: contato@meioambiente.gov</p>
+                <p>Horário de Atendimento: 8h às 17h</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ - Perguntas Frequentes</a></li>
+                    <li><a href="privacidade.html">Política de Privacidade (LGPD)</a></li>
+                    <li><a href="mapa-do-site.html">Mapa do Site</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Siga-nos</h4>
+                <a href="#" aria-label="Facebook">Face</a> | <a href="#" aria-label="Instagram">Insta</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Secretaria de Meio Ambiente. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    </body>
+</html>

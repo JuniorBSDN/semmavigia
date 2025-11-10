@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparência - SEMMA - Vigia/PA</title>
+    <style>
+        /*
+        ==================================================
+        CSS BASE (MANTENDO COERÊNCIA VISUAL)
+        ==================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            /* Paleta de Cores Ambientais e Governamentais */
+            --color-primary: #007A33; /* Verde Floresta Escuro (Principal) */
+            --color-secondary: #00A65A; /* Verde Cítrico (Destaque) */
+            --color-accent: #FFCC00; /* Amarelo Alerta/Sol */
+            --color-background: #F8F8F8; /* Fundo Claro */
+            --color-text-dark: #1A1A1A;
+            --color-text-light: #FFFFFF;
+            --color-border: #E0E0E0;
+            --color-card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-secondary);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+
+        /* Estilos do Cabeçalho e Rodapé (Reutilizados) */
+        .main-header {
+            background-color: var(--color-text-light);
+            border-bottom: 3px solid var(--color-primary);
+            padding: 10px 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-area img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5em;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 8px;
+            order: 3;
+        }
+
+        .social-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .social-nav a:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .social-icon {
+            font-weight: 700;
+        }
+
+        .primary-nav {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .primary-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .primary-nav a {
+            color: var(--color-text-dark);
+            font-weight: 400;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .primary-nav a:hover, .primary-nav .active a { /* Destaque para página ativa */
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .search-box input {
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .main-footer {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 40px 0 10px;
+            margin-top: 50px;
+        }
+
+        .main-footer h3, .main-footer h4 {
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .main-footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-contact, .footer-links, .footer-social {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a, .footer-social a {
+            color: var(--color-text-light);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .footer-links a:hover, .footer-social a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8em;
+        }
+
+        /*
+        ==================================================
+        2. ESTILOS ESPECÍFICOS: PÁGINA DE TRANSPARÊNCIA
+        ==================================================
+        */
+        .hero-title {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-title h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .transparency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+
+        .transparency-item {
+            display: block;
+            background-color: var(--color-card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 5px solid var(--color-primary); /* Destaque Governamental */
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .transparency-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .transparency-item h3 {
+            color: var(--color-primary);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .transparency-item p {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .transparency-item .access-link {
+            display: inline-block;
+            font-weight: 600;
+            color: var(--color-secondary);
+            border-bottom: 1px dashed var(--color-secondary);
+        }
+
+        .section-header {
+            border-bottom: 2px solid var(--color-accent);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            color: var(--color-text-dark);
+        }
+
+        .law-access {
+            background-color: #E6F3EA; /* Verde muito claro */
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid var(--color-secondary);
+            margin-bottom: 40px;
+        }
+
+        .law-access h4 {
+            color: var(--color-primary);
+            margin-top: 0;
+        }
+
+        .law-access a {
+            font-weight: 600;
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero-title h2 { font-size: 2em; }
+            .primary-nav { flex-direction: column; align-items: flex-start; }
+            .primary-nav ul { width: 100%; justify-content: space-around; margin-bottom: 15px; }
+            .transparency-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<!--BOTÕES DE EMERGGENCIA-->
+<div id="fixed-corner-buttons">
+    <a href="https://wa.me/559184129007" class="btn-corner-base btn-viatura">
+        <i data-feather="phone-call"></i> VIATURA DA POLÍCIA</a>
+    <a href="https://deamvirtual.pc.pa.gov.br/violencia_contra_mulher/" class="btn-corner-base btn-denuncia-corner">
+        <i data-feather="message-circle"></i> BOMBEIRO</a>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-area">
+                <img src="https://i.imgur.com/OFREfKI.jpeg" alt="Logotipo da Secretaria de Meio Ambiente">
+                <h1>SEMMA - Vigia/PA</h1>
+            </div>
+
+            <nav class="primary-nav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="service.html">Serviços</a></li>
+                    <li><a href="legislacao.html">Legislação</a></li>
+                    <li><a href="educacao-ambiental.html">Educação Ambiental</a></li>
+                    <li class="active"><a href="transparencia.html">Transparência</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <a href="denuncia.html" class="btn-denuncia-main btn-pulsar" style="
+            background-color: red;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block; /* Necessário para aplicar transform */
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Adiciona um brilho sutil */
+        ">Denuncie Agora !</a>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+    <section class="hero-title">
+        <div class="container">
+            <h2>Portal da Transparência e Acesso à Informação</h2>
+        </div>
+    </section>
+    <main class="main-content">
+        <div class="container">
+
+            <h2 class="section-header">Informações Financeiras e Orçamentárias</h2>
+
+            <section class="transparency-grid">
+
+                <a href="transparencia/orcamento.html" class="transparency-item">
+                    <h3>Orçamento e LDO/LOA</h3>
+                    <p>Acesso ao Plano Plurianual (PPA), Lei de Diretrizes Orçamentárias (LDO) e Lei Orçamentária Anual (LOA).</p>
+                    <span class="access-link">Acessar Documentos →</span>
+                </a>
+
+                <a href="transparencia/receitas-despesas.html" class="transparency-item">
+                    <h3>Receitas e Despesas</h3>
+                    <p>Consulta detalhada sobre a arrecadação da SEMMA e o registro de todas as despesas por exercício.</p>
+                    <span class="access-link">Ver Balanços Mensais →</span>
+                </a>
+
+                <a href="transparencia/licitacoes-contratos.html" class="transparency-item">
+                    <h3>Licitações e Contratos</h3>
+                    <p>Visualização de editais, avisos de licitação, resultados e contratos firmados pela Secretaria.</p>
+                    <span class="access-link">Pesquisar Licitações →</span>
+                </a>
+
+                <a href="transparencia/prestacao-contas.html" class="transparency-item">
+                    <h3>Prestação de Contas</h3>
+                    <p>Relatórios de Gestão Fiscal (RGF) e Relatórios Resumidos de Execução Orçamentária (RREO).</p>
+                    <span class="access-link">Ver Relatórios Oficiais →</span>
+                </a>
+            </section>
+
+            <h2 class="section-header">Acesso à Informação Pública (LAI)</h2>
+
+            <section class="law-access">
+                <h4>Lei de Acesso à Informação (LAI) - Lei Federal nº 12.527/2011</h4>
+                <p>O cidadão tem o direito de solicitar informações públicas que não estejam disponíveis neste Portal de Transparência.</p>
+                <p>Para exercer seu direito, acesse o sistema municipal de e-SIC (Serviço de Informação ao Cidadão).</p>
+                <p>
+                    <a href="http://esic.vigiapa.gov.br" target="_blank" class="access-link">Acessar e-SIC Vigia/PA →</a>
+                </p>
+            </section>
+
+            <h2 class="section-header">Recursos Humanos e Estrutura</h2>
+
+            <section class="transparency-grid">
+
+                <a href="transparencia/servidores.html" class="transparency-item">
+                    <h3>Servidores e Remuneração</h3>
+                    <p>Consulta à lista de servidores efetivos e comissionados, cargos e tabela de remuneração.</p>
+                    <span class="access-link">Ver Lista de Pessoal →</span>
+                </a>
+
+                <a href="transparencia/estrutura.html" class="transparency-item">
+                    <h3>Estrutura Organizacional</h3>
+                    <p>Organograma da SEMMA, competências das diretorias e dados de contato dos gestores.</p>
+                    <span class="access-link">Ver Organograma →</span>
+                </a>
+            </section>
+
+        </div>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-contact">
+                <h3>Secretaria de Meio Ambiente</h3>
+                <p>Endereço: [Rua, Número, Bairro]</p>
+                <p>Telefone: (XX) XXXX-XXXX | E-mail: contato@meioambiente.gov</p>
+                <p>Horário de Atendimento: 8h às 17h</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ - Perguntas Frequentes</a></li>
+                    <li><a href="privacidade.html">Política de Privacidade (LGPD)</a></li>
+                    <li><a href="mapa-do-site.html">Mapa do Site</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Siga-nos</h4>
+                <a href="#" aria-label="Facebook">Face</a> | <a href="#" aria-label="Instagram">Insta</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Secretaria de Meio Ambiente. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    </body>
+</html>

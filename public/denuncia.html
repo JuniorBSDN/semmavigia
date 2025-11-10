@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Denúncias Ambientais - SEMMA - Vigia/PA</title>
+    <style>
+        /*
+        ==================================================
+        CSS BASE (REUTILIZANDO O CÓDIGO FORNECIDO ANTERIORMENTE)
+        ==================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            --color-primary: #007A33; /* Verde Floresta Escuro (Principal) */
+            --color-secondary: #00A65A; /* Verde Cítrico (Destaque) */
+            --color-accent: #FFCC00; /* Amarelo Alerta/Sol */
+            --color-background: #F8F8F8; /* Fundo Claro */
+            --color-text-dark: #1A1A1A;
+            --color-text-light: #FFFFFF;
+            --color-border: #E0E0E0;
+            --color-card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-secondary);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+
+        /* Estilos do Cabeçalho e Rodapé */
+
+        .main-header {
+            background-color: var(--color-text-light);
+            border-bottom: 3px solid var(--color-primary);
+            padding: 10px 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-area img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5em;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 8px;
+            order: 3;
+        }
+
+        .social-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .social-nav a:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .social-icon {
+            font-weight: 700;
+        }
+
+        .primary-nav {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .primary-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .primary-nav a {
+            color: var(--color-text-dark);
+            font-weight: 400;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .primary-nav a:hover, .primary-nav .active a {
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .main-footer {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 40px 0 10px;
+        }
+
+        .main-footer h3, .main-footer h4 {
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .main-footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-contact, .footer-links, .footer-social {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a, .footer-social a {
+            color: var(--color-text-light);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8em;
+        }
+
+        /*
+        ==================================================
+        ESTILOS ESPECÍFICOS: PÁGINA DE DENÚNCIA
+        ==================================================
+        */
+        .hero-title {
+            background-color: #CC0000; /* Vermelho para dar senso de urgência/alerta */
+            color: var(--color-text-light);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-title h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        /* --------------------------------------------------
+        NOVO ESTILO: AVISO LEGAL
+        -------------------------------------------------- */
+        #legal-warning {
+            padding: 40px;
+            background-color: #FEEAEA; /* Fundo muito claro de alerta */
+            border: 2px solid #CC0000;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        #legal-warning h3 {
+            color: #CC0000;
+            margin-bottom: 10px;
+        }
+
+        #legal-warning p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+        }
+
+        .btn-confirm {
+            padding: 10px 30px;
+            background-color: #CC0000;
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-confirm:hover {
+            background-color: #990000;
+        }
+
+        /* --------------------------------------------------
+        ESTILOS DO FORMULÁRIO (OCULTO POR PADRÃO)
+        -------------------------------------------------- */
+        .denuncia-form-area {
+            padding: 40px;
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 60px;
+            display: none; /* OCULTA O FORMULÁRIO INICIALMENTE */
+        }
+
+        .denuncia-form-area h3 {
+            color: #CC0000;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .alert-box {
+            background-color: #FFF2CC; /* Amarelo claro de alerta */
+            border: 1px solid var(--color-accent);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 25px;
+            color: var(--color-text-dark);
+            font-size: 0.9em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--color-primary);
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-inline {
+            display: flex;
+            gap: 20px;
+        }
+
+        .form-inline .form-group {
+            flex: 1;
+        }
+
+        .btn-submit {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #CC0000;
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 4px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #990000;
+        }
+
+        /* Media Query para responsividade do formulário */
+        @media (max-width: 768px) {
+            .form-inline {
+                flex-direction: column;
+                gap: 0;
+            }
+            .denuncia-form-area {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-title">
+        <div class="container">
+            <h2>🚨 Atenção!</h2>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+
+            <div id="legal-warning">
+                <h3>⚠️ Aviso Legal sobre Falsas Denúncias</h3>
+                <p>Informamos que a Falsa Comunicação de Crime, de acordo com o Código Penal Brasileiro (Art. 340), é **CRIME**, sujeito a reclusão e multa.</p>
+                <p>Ao prosseguir, você confirma que a denúncia será feita com **base na verdade** e em **boa-fé**, sob pena das sanções cabíveis.</p>
+                <button type="button" class="btn-confirm" id="btn-confirm-denuncia">Compreendi e Desejo Continuar para o Formulário</button>
+            </div>
+
+            <div class="denuncia-form-area" id="denuncia-form-area">
+                <h3>Preenchimento da Denúncia</h3>
+
+                <div class="alert-box">
+                    <strong>Sigilo Garantido:</strong> Todas as informações fornecidas, inclusive seus dados de contato, serão tratadas com **máximo sigilo** e utilizadas apenas para fins de fiscalização. Se preferir, marque a opção "Denúncia Anônima" abaixo.
+                    <hr style="margin: 10px 0; border: 0; border-top: 1px dashed #FFCC00;">
+                    **Emergências (Flagrantes):** Em casos urgentes que envolvam risco imediato, ligue para a Polícia Militar Ambiental (Disque 190).
+                </div>
+
+                <form action="/api/denuncia-submit" method="POST" enctype="multipart/form-data">
+
+                    <div class="form-group" style="margin-bottom: 30px;">
+                        <label>Tipo de Denúncia:</label>
+                        <div style="display: flex; gap: 20px;">
+                            <label><input type="radio" name="tipo_denuncia" value="anonima" checked> Denúncia Anônima</label>
+                            <label><input type="radio" name="tipo_denuncia" value="identificada"> Denúncia Identificada</label>
+                        </div>
+                    </div>
+
+                    <div id="denunciante-info" style="border: 1px solid #CCC; padding: 15px; border-radius: 4px; margin-bottom: 25px; display: none;">
+                        <h4>Seus Dados de Contato (Sigilosos)</h4>
+                        <p style="font-size: 0.85em; color: #555; margin-bottom: 15px;">Estes dados são importantes para que a SEMMA possa solicitar mais informações, se necessário, mas seu sigilo é mantido.</p>
+
+                        <div class="form-inline">
+                            <div class="form-group"><label for="nome_denunciante">Nome Completo:</label><input type="text" id="nome_denunciante" name="nome_denunciante"></div>
+                            <div class="form-group"><label for="telefone_denunciante">Telefone/WhatsApp:</label><input type="tel" id="telefone_denunciante" name="telefone_denunciante"></div>
+                        </div>
+                        <div class="form-group"><label for="email_denunciante">E-mail:</label><input type="email" id="email_denunciante" name="email_denunciante"></div>
+                    </div>
+
+                    <hr>
+
+                    <h3>Dados da Ocorrência</h3>
+
+                    <div class="form-group">
+                        <label for="tipo_infracao">Tipo de Infração Denunciada <span style="color: red;">*</span></label>
+                        <select id="tipo_infracao" name="tipo_infracao" required>
+                            <option value="">Selecione o principal tipo de agressão...</option>
+                            <option value="poluicao_sonora">Poluição Sonora (Ex: Barulho excessivo, som alto)</option>
+                            <option value="descarte_residuos">Descarte Irregular de Lixo/Entulho/Esgoto</option>
+                            <option value="supressao_vegetal">Desmatamento ou Supressão Ilegal de Vegetação</option>
+                            <option value="poluicao_ar">Poluição do Ar (Ex: Fumaça, Odores Fortes)</option>
+                            <option value="atividade_sem_licenca">Atividade ou Obra Sem Licença Ambiental</option>
+                            <option value="maus_tratos_animais">Maus Tratos a Animais Silvestres (Para Domésticos, procure a Delegacia)</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nome_denunciado">Nome ou Razão Social do Denunciado (Se souber)</label>
+                        <input type="text" id="nome_denunciado" name="nome_denunciado" placeholder="Ex: Nome do estabelecimento ou proprietário.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endereco_local">Localização Exata do Fato <span style="color: red;">*</span></label>
+                        <input type="text" id="endereco_local" name="endereco_local" placeholder="Ex: Rua Tal, n° 123, Bairro Centro." required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="referencia">Ponto de Referência e/ou Coordenadas Geográficas</label>
+                        <input type="text" id="referencia" name="referencia" placeholder="Ex: Próximo à Escola XYZ. Coordenadas: -0.89000, -48.17000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="descricao_fato">Descrição Detalhada do Fato <span style="color: red;">*</span></label>
+                        <textarea id="descricao_fato" name="descricao_fato" placeholder="Descreva o que está acontecendo (o tipo de agressão), quando começou, se é recorrente e o que foi presenciado." required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="anexo">Anexar Evidências (Fotos/Vídeos - Opcional)</label>
+                        <input type="file" id="anexo" name="anexo" accept="image/*,video/*" multiple>
+                        <p style="font-size: 0.8em; color: #666;">Permitido anexar até 3 arquivos (Imagens ou vídeos curtos).</p>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Enviar Denúncia para SEMMA</button>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const warningDiv = document.getElementById('legal-warning');
+            const formDiv = document.getElementById('denuncia-form-area');
+            const confirmBtn = document.getElementById('btn-confirm-denuncia');
+
+            // Campos de dados do denunciante (para controle de anonimato)
+            const denuncianteInfoDiv = document.getElementById('denunciante-info');
+            const tipoDenunciaRadios = document.querySelectorAll('input[name="tipo_denuncia"]');
+            const nomeDenuncianteInput = document.getElementById('nome_denunciante');
+
+
+            // 1. Lógica para exibir o formulário após a confirmação do aviso
+            confirmBtn.addEventListener('click', function() {
+                warningDiv.style.display = 'none'; // Oculta o aviso
+                formDiv.style.display = 'block';   // Exibe o formulário
+                // Opcional: Rola a página para o topo do formulário
+                formDiv.scrollIntoView({ behavior: 'smooth' });
+            });
+
+            // 2. Lógica para controle de denúncia anônima vs. identificada
+            function toggleDenuncianteInfo() {
+                if (document.querySelector('input[name="tipo_denuncia"]:checked').value === 'anonima') {
+                    denuncianteInfoDiv.style.display = 'none';
+                    // Garante que campos não são obrigatórios se for anônima
+                    nomeDenuncianteInput.removeAttribute('required');
+                } else {
+                    denuncianteInfoDiv.style.display = 'block';
+                    // Torna o nome obrigatório se for identificada
+                    nomeDenuncianteInput.setAttribute('required', 'required');
+                }
+            }
+
+            tipoDenunciaRadios.forEach(radio => {
+                radio.addEventListener('change', toggleDenuncianteInfo);
+            });
+
+            // Executa a função inicialmente para configurar o estado padrão (anônimo e oculto)
+            // Chamamos aqui para configurar o estado inicial (anonimo, ou seja, nome não obrigatório)
+            toggleDenuncianteInfo();
+        });
+    </script>
+    </body>
+</html>

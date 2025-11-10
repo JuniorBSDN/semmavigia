@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educação Ambiental - SEMMA - Vigia/PA</title>
+    <style>
+        /*
+        ==================================================
+        CSS BASE (MANTENDO COERÊNCIA VISUAL)
+        ==================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            /* Paleta de Cores Ambientais e Governamentais */
+            --color-primary: #007A33; /* Verde Floresta Escuro (Principal) */
+            --color-secondary: #00A65A; /* Verde Cítrico (Destaque) */
+            --color-accent: #FFCC00; /* Amarelo Alerta/Sol */
+            --color-background: #F8F8F8; /* Fundo Claro */
+            --color-text-dark: #1A1A1A;
+            --color-text-light: #FFFFFF;
+            --color-border: #E0E0E0;
+            --color-card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-secondary);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+
+        /* Estilos do Cabeçalho e Rodapé (Reutilizados) */
+        .main-header {
+            background-color: var(--color-text-light);
+            border-bottom: 3px solid var(--color-primary);
+            padding: 10px 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-area img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5em;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 8px;
+            order: 3;
+        }
+
+        .social-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .social-nav a:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .social-icon {
+            font-weight: 700;
+        }
+
+        .primary-nav {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .primary-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .primary-nav a {
+            color: var(--color-text-dark);
+            font-weight: 400;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .primary-nav a:hover, .primary-nav .active a { /* Destaque para página ativa */
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .search-box input {
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .main-footer {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 40px 0 10px;
+        }
+
+        .main-footer h3, .main-footer h4 {
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .main-footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-contact, .footer-links, .footer-social {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a, .footer-social a {
+            color: var(--color-text-light);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .footer-links a:hover, .footer-social a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8em;
+        }
+
+        /*
+        ==================================================
+        2. ESTILOS ESPECÍFICOS: EDUCAÇÃO AMBIENTAL
+        ==================================================
+        */
+        .hero-title {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-title h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .section-padding {
+            padding: 40px 0;
+        }
+
+        /* Destaque de Programas */
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .program-card {
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            /* Imagem Simplesmente Verde para o protótipo */
+            background-color: var(--color-primary);
+            display: block;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-content h3 {
+            color: var(--color-primary);
+            font-size: 1.3em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .card-content p {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .card-content a {
+            display: inline-block;
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        /* Seção de Calendário (Eventos) */
+        .calendar-section {
+            background-color: var(--color-card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            margin-bottom: 40px;
+        }
+
+        .calendar-section h3 {
+             color: var(--color-text-dark);
+             border-bottom: 2px solid var(--color-accent);
+             padding-bottom: 10px;
+        }
+
+        .event-list {
+            list-style: none;
+        }
+
+        .event-item {
+            display: flex;
+            padding: 15px 0;
+            border-bottom: 1px dashed var(--color-border);
+        }
+
+        .event-item:last-child {
+            border-bottom: none;
+        }
+
+        .event-date {
+            flex: 0 0 100px;
+            text-align: center;
+            font-weight: 700;
+            color: var(--color-secondary);
+        }
+
+        .event-date .month {
+            display: block;
+            font-size: 0.9em;
+            color: var(--color-primary);
+        }
+
+        .event-info {
+            flex-grow: 1;
+        }
+
+        .event-info h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1em;
+        }
+
+        .event-info p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero-title h2 { font-size: 2em; }
+            .primary-nav { flex-direction: column; align-items: flex-start; }
+            .primary-nav ul { width: 100%; justify-content: space-around; margin-bottom: 15px; }
+            .programs-grid { grid-template-columns: 1fr; }
+            .event-item { flex-direction: column; }
+            .event-date { text-align: left; margin-bottom: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-area">
+                <img src="https://i.imgur.com/OFREfKI.jpeg" alt="Logotipo da Secretaria de Meio Ambiente">
+                <h1>SEMMA - Vigia/PA</h1>
+            </div>
+            <nav class="primary-nav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="service.html">Serviços</a></li>
+                    <li><a href="legislacao.html">Legislação</a></li>
+                    <li class="active"><a href="educacao-ambiental.html">Educação Ambiental</a></li>
+                    <li><a href="transparencia.html">Transparência</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <a href="denuncia.html" class="btn-denuncia-main btn-pulsar" style="
+            background-color: red;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block; /* Necessário para aplicar transform */
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Adiciona um brilho sutil */
+        ">Denuncie Agora !</a>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+    <section class="hero-title">
+        <div class="container">
+            <h2>Educar para Preservar: Nossos Programas</h2>
+        </div>
+    </section>
+    <main class="main-content section-padding">
+        <div class="container">
+            <h2 style="color: var(--color-primary); margin-bottom: 30px;">Ações em Destaque</h2>
+
+            <section class="programs-grid">
+                <article class="program-card">
+                    <img src="" alt="Alunos plantando uma muda.">
+                    <div class="card-content">
+                        <h3>Escola Sustentável</h3>
+                        <p>Incentivo à horta escolar, coleta seletiva e uso eficiente de recursos em parceria com a Secretaria de Educação.</p>
+                        <a href="educacao-ambiental/escola-sustentavel.html">Saiba Mais e Participe →</a>
+                    </div>
+                </article>
+
+                <article class="program-card">
+                    <img src="" alt="Artesanato feito com materiais reciclados.">
+                    <div class="card-content">
+                        <h3>Oficinas de Reúso Criativo</h3>
+                        <p>Aprenda a transformar resíduos em arte e objetos úteis, reduzindo o volume de lixo e promovendo a economia circular.</p>
+                        <a href="educacao-ambiental/oficinas-reuso.html">Ver Cronograma de Aulas →</a>
+                    </div>
+                </article>
+
+                <article class="program-card">
+                    <img src="" alt="Jovens em atividade de campo perto do rio.">
+                    <div class="card-content">
+                        <h3>Guardiões da Natureza</h3>
+                        <p>Programa de formação de jovens líderes ambientais focado na proteção dos manguezais e recursos hídricos locais.</p>
+                        <a href="educacao-ambiental/jovens-guardioes.html">Faça sua Inscrição →</a>
+                    </div>
+                </article>
+
+            </section>
+
+            <h2 style="color: var(--color-primary); margin-top: 30px; margin-bottom: 30px;">Próximos Eventos e Atividades</h2>
+
+            <section class="calendar-section">
+
+                <ul class="event-list">
+
+                    <li class="event-item">
+                        <div class="event-date">
+                            25 <span class="month">NOV</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Mutirão de Limpeza do Rio Guajará</h4>
+                            <p>Local: Orla de Vigia, próximo ao mercado. Junte-se a nós na coleta de resíduos. (Inscrições abertas).</p>
+                        </div>
+                        <a href="#" class="doc-link">Detalhes</a>
+                    </li>
+
+                    <li class="event-item">
+                        <div class="event-date">
+                            05 <span class="month">DEZ</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Webinar: Lei de Crimes Ambientais para Empreendedores</h4>
+                            <p>Sessão online com o Procurador Municipal. Inscreva-se para obter o link.</p>
+                        </div>
+                         <a href="#" class="doc-link">Inscrever-se</a>
+                    </li>
+
+                    <li class="event-item">
+                        <div class="event-date">
+                            10 <span class="month">DEZ</span>
+                        </div>
+                        <div class="event-info">
+                            <h4>Distribuição de Mudas Nativas</h4>
+                            <p>Retire sua muda gratuitamente na sede da SEMMA e ajude a reflorestar o município.</p>
+                        </div>
+                         <a href="#" class="doc-link">Localização</a>
+                    </li>
+
+                </ul>
+            </section>
+
+            <section style="margin-top: 50px;">
+                 <h2 style="color: var(--color-primary); border-bottom: 2px solid var(--color-secondary); padding-bottom: 10px;">Materiais de Apoio</h2>
+                 <p style="margin-top: 15px;">Baixe cartilhas, guias e materiais didáticos para usar em casa ou na escola.</p>
+
+                 <div class="programs-grid" style="margin-top: 20px;">
+                    <a href="docs/guia-coleta-seletiva.pdf" class="service-item">
+                        <h4>Guia Rápido da Coleta Seletiva em Vigia</h4>
+                        <p>O que reciclar, onde descartar e os horários de coleta no seu bairro.</p>
+                        <span class="action-link">Baixar PDF →</span>
+                    </a>
+                    <a href="docs/cartilha-mangue.pdf" class="service-item">
+                        <h4>Cartilha: A Vida no Manguezal</h4>
+                        <p>Material didático sobre a importância ecológica dos ecossistemas costeiros de Vigia.</p>
+                        <span class="action-link">Baixar PDF →</span>
+                    </a>
+                 </div>
+            </section>
+
+
+        </div>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-contact">
+                <h3>Secretaria de Meio Ambiente</h3>
+                <p>Endereço: [Rua, Número, Bairro]</p>
+                <p>Telefone: (XX) XXXX-XXXX | E-mail: contato@meioambiente.gov</p>
+                <p>Horário de Atendimento: 8h às 17h</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ - Perguntas Frequentes</a></li>
+                    <li><a href="privacidade.html">Política de Privacidade (LGPD)</a></li>
+                    <li><a href="mapa-do-site.html">Mapa do Site</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Siga-nos</h4>
+                <a href="#" aria-label="Facebook">Face</a> | <a href="#" aria-label="Instagram">Insta</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Secretaria de Meio Ambiente. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    </body>
+</html>

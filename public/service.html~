@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - SEMMA - Vigia/PA</title>
+    <style>
+        /*
+        ==================================================
+        CSS BASE (MANTENDO COERÊNCIA VISUAL)
+        (*** Omitindo o CSS base que não foi alterado para brevidade ***)
+        ==================================================
+        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        :root {
+            /* Paleta de Cores Ambientais e Governamentais */
+            --color-primary: #007A33; /* Verde Floresta Escuro (Principal) */
+            --color-secondary: #00A65A; /* Verde Cítrico (Destaque) */
+            --color-accent: #FFCC00; /* Amarelo Alerta/Sol */
+            --color-background: #F8F8F8; /* Fundo Claro */
+            --color-text-dark: #1A1A1A;
+            --color-text-light: #FFFFFF;
+            --color-border: #E0E0E0;
+            --color-card-bg: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--color-text-dark);
+            background-color: var(--color-background);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color-primary);
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: var(--color-secondary);
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 0.8em;
+            font-weight: 600;
+        }
+
+        /* Estilos do Cabeçalho e Rodapé (Reutilizados do index.html) */
+
+        .main-header {
+            background-color: var(--color-text-light);
+            border-bottom: 3px solid var(--color-primary);
+            padding: 10px 0;
+        }
+
+        .main-header .container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-area img {
+            height: 50px;
+            margin-right: 15px;
+        }
+
+        .logo-area h1 {
+            font-size: 1.5em;
+            color: var(--color-primary);
+            margin: 0;
+        }
+
+        .social-nav {
+            display: flex;
+            gap: 8px;
+            order: 3;
+        }
+
+        .social-nav a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .social-nav a:hover {
+            background-color: var(--color-secondary);
+        }
+
+        .social-icon {
+            font-weight: 700;
+        }
+
+        .primary-nav {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .primary-nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .primary-nav a {
+            color: var(--color-text-dark);
+            font-weight: 400;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .primary-nav a:hover, .primary-nav .active a { /* Destaque para página ativa */
+            color: var(--color-primary);
+            border-bottom: 2px solid var(--color-secondary);
+        }
+
+        .search-box input {
+            padding: 8px;
+            border: 1px solid var(--color-border);
+            border-radius: 4px 0 0 4px;
+            outline: none;
+        }
+
+        .search-box button {
+            padding: 8px 15px;
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        .main-footer {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            padding: 40px 0 10px;
+        }
+
+        .main-footer h3, .main-footer h4 {
+            color: var(--color-accent);
+            margin-bottom: 15px;
+        }
+
+        .main-footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-contact, .footer-links, .footer-social {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links a, .footer-social a {
+            color: var(--color-text-light);
+            opacity: 0.8;
+            line-height: 1.8;
+        }
+
+        .footer-links a:hover, .footer-social a:hover {
+            opacity: 1;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.8em;
+        }
+
+        /*
+        ==================================================
+        2. ESTILOS ESPECÍFICOS: PÁGINA DE SERVIÇOS
+        ==================================================
+        */
+        .hero-title {
+            background-color: var(--color-secondary);
+            color: var(--color-text-light);
+            padding: 30px 0;
+            margin-bottom: 40px;
+        }
+
+        .hero-title h2 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        /* --------------------------------------------------
+        NOVO ESTILO PARA SERVIÇOS RÁPIDOS (Corrigido)
+        --------------------------------------------------
+        */
+        .quick-services {
+            padding: 40px 0;
+            background-color: var(--color-card-bg); /* Fundo claro para destaque */
+            margin-bottom: 40px;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .quick-services h2 {
+            text-align: center;
+            color: var(--color-primary);
+            margin-bottom: 30px;
+        }
+
+        .service-cards {
+            /* AQUI ESTÁ A CORREÇÃO: Usando Grid para dispor os cards lado a lado */
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Cria colunas que se ajustam, no mínimo 250px */
+            gap: 20px; /* Espaçamento entre os cards */
+            justify-content: center; /* Centraliza se houver espaço extra */
+        }
+
+        .service-cards .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 25px 20px;
+            background-color: var(--color-background);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .service-cards .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-cards .card img {
+            margin-bottom: 15px;
+            /* Ajuste para ícones maiores se necessário: */
+            width: 60px; /* Diminuído para um tamanho mais padrão de ícone de card */
+            height: auto;
+        }
+
+        .service-cards .card h3 {
+            font-size: 1.2em;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .service-cards .card p {
+            font-size: 0.9em;
+            color: #444;
+        }
+        /* --------------------------------------------------
+        FIM DO NOVO ESTILO
+        --------------------------------------------------
+        */
+
+        /* Estrutura de Categorias */
+        .service-category {
+            margin-bottom: 60px;
+            padding: 30px;
+            background-color: var(--color-card-bg);
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-category h3 {
+            color: var(--color-primary);
+            font-size: 1.8em;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+
+        .service-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        /* Estilo dos Blocos de Serviço */
+        .service-item {
+            display: block;
+            padding: 20px;
+            background-color: var(--color-background);
+            border-radius: 6px;
+            transition: background-color 0.3s, transform 0.3s;
+            border-left: 5px solid var(--color-secondary); /* Destaque lateral */
+        }
+
+        .service-item:hover {
+            background-color: #E6F3EA; /* Verde muito claro */
+            transform: translateY(-2px);
+        }
+
+        .service-item h4 {
+            color: var(--color-text-dark);
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .service-item p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .service-item .action-link {
+            display: inline-block;
+            margin-top: 10px;
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+
+        /* Media Queries (Apenas para garantir a responsividade) */
+        @media (max-width: 768px) {
+            .primary-nav { flex-direction: column; align-items: flex-start; }
+            .primary-nav ul { width: 100%; justify-content: space-around; margin-bottom: 15px; }
+            .service-list { grid-template-columns: 1fr; }
+            .hero-title h2 { font-size: 2em; }
+            .main-footer .container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="logo-area">
+                <img src="https://i.imgur.com/OFREfKI.jpeg" alt="Logotipo da Secretaria de Meio Ambiente">
+                <h1>SEMMA - Vigia/PA</h1>
+            </div>
+
+            <nav class="primary-nav">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li class="active"><a href="service.html">Serviços</a></li>
+                    <li><a href="legislacao.html">Legislação</a></li>
+                    <li><a href="educacao-ambiental.html">Educação Ambiental</a></li>
+                    <li><a href="transparencia.html">Transparência</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+               <div style="text-align: center; margin-bottom: 20px;">
+                    <a href="denuncia.html" class="btn-denuncia-main btn-pulsar" style="
+            background-color: red;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 8px;
+            display: inline-block; /* Necessário para aplicar transform */
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.7); /* Adiciona um brilho sutil */
+        ">Denuncie Agora !</a>
+                </div>
+
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-title">
+        <div class="container">
+            <h2>Portal de Serviços Online</h2>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <div class="container">
+            <section class="service-category">
+                <h3>1. Licenciamento Ambiental</h3>
+                <p>O processo para obtenção da licença necessária para instalação, operação e ampliação de empreendimentos e atividades com potencial poluidor.</p>
+                <div class="service-list">
+                    <a href="licenciamento/solicitar.html" class="service-item">
+                        <h4>Solicitar Licença Prévia (LP)</h4>
+                        <p>Inicie aqui o pedido de licença para seu novo empreendimento, atestando a viabilidade ambiental.</p>
+                        <span class="action-link">Acessar Formulário Online →</span>
+                    </a>
+                    <a href="licenciamento/operacao.html" class="service-item">
+                        <h4>Renovação e Licença de Operação (LO)</h4>
+                        <p>Procedimentos para a renovação da sua LO ou solicitação inicial para início das atividades.</p>
+                        <span class="action-link">Iniciar Renovação/LO →</span>
+                    </a>
+                    <a href="licenciamento/consulta-processos.html" class="service-item">
+                        <h4>Consulta e Acompanhamento de Processos</h4>
+                        <p>Verifique o status do seu protocolo ou processo de licenciamento por CPF/CNPJ ou número do processo.</p>
+                        <span class="action-link">Consultar Status →</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="service-category">
+                <h3>2. Outorga e Uso de Recursos Hídricos</h3>
+                <p>Autorização para o uso de recursos hídricos (captação de água, lançamento de efluentes ou barramento) no município.</p>
+                <div class="service-list">
+                    <a href="outorga/solicitar.html" class="service-item">
+                        <h4>Solicitar Outorga de Água (Poço/Captação)</h4>
+                        <p>Protocolo para perfuração de poços artesianos, captação superficial e outras intervenções hídricas.</p>
+                        <span class="action-link">Iniciar Pedido →</span>
+                    </a>
+                    <a href="outorga/renovar.html" class="service-item">
+                        <h4>Renovação e Alteração de Outorga</h4>
+                        <p>Mantenha sua outorga em dia, solicitando renovação antes do prazo de vencimento.</p>
+                        <span class="action-link">Renovar Online →</span>
+                    </a>
+                    <a href="outorga/monitoramento.html" class="service-item">
+                        <h4>Monitoramento e Relatórios de Uso</h4>
+                        <p>Orientações para o envio dos relatórios periódicos de monitoramento da sua outorga.</p>
+                        <span class="action-link">Ver Diretrizes →</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="service-category">
+                <h3>3. Fiscalização, Denúncias e Auditoria</h3>
+                <p>Canais para reportar irregularidades e acessar informações sobre a fiscalização ambiental em Vigia.</p>
+                <div class="service-list">
+                    <a href="fiscalizacao/denuncias.html" class="service-item">
+                        <h4>Denúncias Ambientais (Anônimas)</h4>
+                        <p>Canal direto e sigiloso para reportar crimes ambientais, desmatamento e poluição.</p>
+                        <span class="action-link">Acessar Plataforma de Denúncias →</span>
+                    </a>
+                    <a href="fiscalizacao/auto-infracao.html" class="service-item">
+                        <h4>Defesa e Recurso de Auto de Infração</h4>
+                        <p>Orientações sobre como apresentar defesa administrativa contra multas ou infrações.</p>
+                        <span class="action-link">Ver Detalhes →</span>
+                    </a>
+                    <a href="fiscalizacao/consulta-multas.html" class="service-item">
+                        <h4>Consulta de Multas e Infrações</h4>
+                        <p>Pesquise e consulte a situação de autos de infração emitidos pela SEMMA.</p>
+                        <span class="action-link">Consultar Base de Dados →</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="service-category">
+                <h3>4. Cadastros, Certidões e Registros</h3>
+                <p>Serviços relacionados a cadastros obrigatórios, emissão de documentos oficiais e manejo de recursos naturais.</p>
+                <div class="service-list">
+                    <a href="cadastros/car.html" class="service-item">
+                        <h4>Cadastro Ambiental Rural (CAR)</h4>
+                        <p>Apoio, emissão de segunda via e dúvidas sobre o registro eletrônico rural.</p>
+                        <span class="action-link">Acessar Módulo CAR →</span>
+                    </a>
+                    <a href="certificacoes/emissaodeb.html" class="service-item">
+                        <h4>Emissão de Certidões Negativas</h4>
+                        <p>Solicite certidões de regularidade ambiental ou negativas de débito para empreendimentos.</p>
+                        <span class="action-link">Solicitar Certidão →</span>
+                    </a>
+                    <a href="cadastros/vendedor-ambulante.html" class="service-item">
+                        <h4>Cadastro de Vendedor de Produtos Florestais</h4>
+                        <p>Registro obrigatório para comércio de plantas, mudas e outros produtos naturais na região.</p>
+                        <span class="action-link">Cadastrar-se →</span>
+                    </a>
+                    <a href="cadastros/relatorio-anual.html" class="service-item">
+                        <h4>Entrega de Relatórios Anuais</h4>
+                        <p>Área para envio obrigatório de relatórios de monitoramento e desempenho ambiental.</p>
+                        <span class="action-link">Fazer Upload →</span>
+                    </a>
+                </div>
+            </section>
+
+            </div>
+    </main>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-contact">
+                <h3>Secretaria de Meio Ambiente</h3>
+                <p>Endereço: [Rua, Número, Bairro]</p>
+                <p>Telefone: (XX) XXXX-XXXX | E-mail: contato@meioambiente.gov</p>
+                <p>Horário de Atendimento: 8h às 17h</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Úteis</h4>
+                <ul>
+                    <li><a href="faq.html">FAQ - Perguntas Frequentes</a></li>
+                    <li><a href="privacidade.html">Política de Privacidade (LGPD)</a></li>
+                    <li><a href="mapa-do-site.html">Mapa do Site</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Siga-nos</h4>
+                <a href="#" aria-label="Facebook">Face</a> | <a href="#" aria-label="Instagram">Insta</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Secretaria de Meio Ambiente. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+    </body>
+</html>
